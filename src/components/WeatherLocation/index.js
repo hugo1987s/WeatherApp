@@ -12,23 +12,13 @@ import {
 } from './../../constants/weathers';
 
 
-
-
-
-const data = {
-    temperature : 10,
-    weatherState : SUN,
-    humidity: 5,
-    wind: '10 m/s',
-}
-
 class WeatherLocation extends Component {
 
     constructor(){
         super();
         this.state = {
             city: "Grand Bourg",
-            data: data,
+            data: null,
         };
         console.log("Constructor");
         
@@ -62,9 +52,12 @@ class WeatherLocation extends Component {
         return (
              <div className="weatherLocationCont">
                 <Location city={city}></Location>
-                <WeatherData data={data}></WeatherData>
-                <button onClick={this.handleUpdateClick}>Actualizar</button>
-            </div>
+                {
+                    data ? 
+                    <WeatherData data={data}></WeatherData> :
+                    "Cargando..."
+                }
+             </div>
         );
     }
 }
