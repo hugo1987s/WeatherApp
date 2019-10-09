@@ -8,13 +8,9 @@ import {api_weather} from '../../constants/api_url';
 import './styles.css';
 
 import {
-    CLOUD,
-    CLOUDY,
-    SUN,
-    RAIN,
-    SNOW,
-    WINDY,
+    SUN
 } from './../../constants/weathers';
+
 
 
 
@@ -34,17 +30,25 @@ class WeatherLocation extends Component {
             city: "Grand Bourg",
             data: data,
         };
+        console.log("Constructor");
+        
     }
     
+    componentDidMount() {
+        console.log("componentDidMount");
+        this.handleUpdateClick();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("componentDidUpdate");
+        
+    }   
    
     handleUpdateClick = () => {
         fetch(api_weather).then( resolve =>{
             return resolve.json();
         }).then(data => {
-
             const newWeather = TransformWeather(data);
-            console.log(newWeather);
-            debugger;
             this.setState({
                 data: newWeather
             });
