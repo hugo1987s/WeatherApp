@@ -9,7 +9,7 @@ import {
 } from './../constants/weathers';
 
 const getTemp = kelvin => {
-    return  Number(Convert(kelvin).from("K").to("C").toFixed(2));
+    return  Number(Convert(kelvin).from("K").to("C").toFixed(0));
 };
 
 const getWeatherState = weather => {
@@ -32,11 +32,13 @@ const getWeatherState = weather => {
 }
 
 const TransformWeather = weather_data => {
-    const { humidity, temp } = weather_data.main;
+    let { humidity, temp } = weather_data.main;
     const { speed } = weather_data.wind;
     const weatherState = getWeatherState(weather_data.weather[0]);
     const temperature = getTemp(temp);
     
+    if (!humidity) humidity= 0;
+
     const data = {
         humidity,
         temperature,
