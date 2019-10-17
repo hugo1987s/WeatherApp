@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -16,7 +16,13 @@ const cities = [
   'Tortuguitas,ar'
 ];
 
-function App() {
+class App extends Component {
+  
+  handleSelectedLocation = city => {
+    console.log(`handleSelectedLocation ${city}`);
+  }
+
+  render(){
   return (
     <Grid>
       <Row>
@@ -30,7 +36,8 @@ function App() {
       </Row>
       <Row>
         <Col xs={12} md={6}>
-          <LocationList cities={cities}></LocationList>
+          <LocationList cities={cities}
+          onSelectedLocation={this.handleSelectedLocation}></LocationList>
         </Col>
       
       <Col xs={12} md={6}>
@@ -45,6 +52,7 @@ function App() {
     </Grid>
 
   );
+  }
 }
 
 
